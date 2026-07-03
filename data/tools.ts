@@ -1,10 +1,14 @@
+import toolsJson from "./tools.json";
+
 /**
  * Registry of standalone interactive tools.
  *
  * To add a tool:
  *   1. Drop its self-contained HTML at  public/tools/<slug>/index.html
- *   2. Add one entry here (slug must match the folder name)
- * The entry feeds the Resources page and sitemap.xml automatically.
+ *   2. Add one entry to data/tools.json (slug must match the folder name)
+ *
+ * The entry feeds the Resources page, sitemap.xml, and the post-build
+ * nav/SEO injection (scripts/inject-tool-nav.mjs) automatically.
  */
 export interface Tool {
   slug: string;
@@ -14,12 +18,4 @@ export interface Tool {
   date: string;
 }
 
-export const tools: Tool[] = [
-  {
-    slug: "the-signal-ladders",
-    title: "The Signal Ladders",
-    description:
-      "Which job-search channels still carry signal in the AI/ML market — and which are noise.",
-    date: "2026-07-02",
-  },
-];
+export const tools: Tool[] = toolsJson as Tool[];

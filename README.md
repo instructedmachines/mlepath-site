@@ -9,11 +9,14 @@ design per the MLE Path Design System handoff. Content lives in `data/*.ts`, not
 ## Add a new tool (2 steps + push)
 
 1. Drop the self-contained HTML at `public/tools/<slug>/index.html`
-2. Add one entry to `data/tools.ts` (slug must match the folder name)
+2. Add one entry to `data/tools.json` (slug must match the folder name)
 3. Commit & push — the tool deploys to `mlepath.com/tools/<slug>/`, appears on
    /resources, and lands in sitemap.xml automatically
 
-Tools are served as-is: no React wrapping, no nav injection, no build coupling.
+Source tool files stay untouched, but the build stamps each deployed tool page
+with the site header plus title/description/canonical/OG meta from the registry
+(`scripts/inject-tool-nav.mjs`) — tools drive traffic back to the site and stay
+indexable.
 
 ## Deploy (first-time setup)
 
